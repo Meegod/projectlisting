@@ -4,10 +4,10 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import  authContext from "../context/AuthContext";
 import { useContext } from "react";
-
+import { signUp } from "../context/firbaseCrud";
 
 const Signup = () => {
-  const { signup } = useContext(authContext);
+  const { setUser } = useContext(authContext);
 
   // const [user, setUser] = useState({ email: "",password: "",});
   const [email, setEmail] = useState("");
@@ -20,14 +20,14 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    try {
-      await signup(email, password);
-      console.log(email,password);
+
+    signUp(email, password) .then(userCredential => {
+      setUser({...userCredential})
       navigate("/");
-    } catch (error) {
-      setError(error.message);
-    }
+    }).catch((e) =>  setError(err.message));
+
   };
+
   return (
     <>
       <div className="p-4 box">

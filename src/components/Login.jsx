@@ -4,6 +4,7 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import  authContext from "../context/AuthContext";
 import { useContext } from "react";
+import { signIn } from "../context/firbaseCrud";
 
 
 
@@ -12,23 +13,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const{login}=useContext(authContext);
+  const{setUser}=useContext(authContext);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    try {
-      await login(email, password);
+    signIn(email, password) .then(userCredential => {
+      setUser({...userCredential})
       navigate("/");
-    } catch (err) {
-      setError(err.message);
-    }
+    }).catch((e) =>  setError(err.message));
+    
   };
 
-
-
-   
 
   return (
     <>
