@@ -1,7 +1,7 @@
 import React from 'react';
 import './search.css';
 
-function Search() {
+function Search({setProductSearch}) {
   return (
    <>
      <div className='pt-4 mt-4 container'>
@@ -13,7 +13,7 @@ function Search() {
         <section className='form'>
            <input type="text" name="q" autofocus="" 
            placeholder='Search for your project topic' 
-           className='text-black'/>
+           className='text-black' onInput={(e)=>setProductSearch(e.target.value.trim())}/>
            <div className="search-icon right">
            <i className="fa fa-microphone"></i>
             </div>
