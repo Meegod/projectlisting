@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Search from './components/Search';
-import Card from './components/Card';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import { Container, Row, Col } from "react-bootstrap";
@@ -20,10 +19,7 @@ function App() {
 <Routes>
   <Route exact path="/" element={
         <>
-        <Navbar/>
         <Main/>
-        <Search/>
-        <Card/> 
         </>
       }/> 
   <Route path="/Login" element={<Login/>}/>
